@@ -85,9 +85,6 @@ async function getImage(fileImg, filePdf) {
     await fetch(urlImg, fetchParamsImg)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            console.log(data.id);
-
             // 2 fetch
             formDataPdf.append('pdf', filePdf) // value = truc.pdf
             urlPdf +=data.id
@@ -100,7 +97,6 @@ async function getImage(fileImg, filePdf) {
                 .then(response=>response.json())
                 .then(result=>{
                     console.log('test')
-                    console.log(result)
                 })
         })
         .catch(error => {
