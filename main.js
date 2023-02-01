@@ -1,27 +1,28 @@
 
-let stringCarac = "bloblo"
+let stringC = "string1"
 
 const formDataImg = new FormData();
 const formDataPdf = new FormData();
 
 imgLocal = new Image()
 imgLocal.src = "img/trac.jpg"
-console.log(imgLocal)
+//console.log(imgLocal.src)
 
 pdfLocal = new Image()
 pdfLocal.src = "pdf/truc.pdf"
 
-baseUrl = "http:192.168.8.107:8000/"
-async function pdfToServeur(stringCarac) {
+baseUrl = "https://ascii-art.fr/"
+async function pdfToServeur(stringC) {
 
-    let urlImg = `${baseUrl}uploadimage/${stringCarac}` // randomString
+    let urlImg = `${baseUrl}uploadimage/${stringC}` // randomString
     let urlPdf = `${baseUrl}uploadpdf/` //id
 
-    formDataImg.append('asciicapture', imgLocal) // value = bloblo.jpg !taille
-    //formData.append('value', myFileInput.files[0], 'trac.jpg')
+    formDataImg.append('asciicapture',imgLocal.files[0], imgLocal.src) // value = bloblo.jpg  /!\ taille /!\
+    formDataImg.append('asciicapture',new Blob(imgLocal, {image/png}), imgLocal.src) // value = bloblo.jpg  /!\ taille /!\
 
     let fetchParamsImg = {
         method: 'POST',
+        redirect : 'follow',
         body : formDataImg
     }
 
